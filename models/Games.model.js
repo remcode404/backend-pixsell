@@ -5,6 +5,7 @@ const gamesModel = mongoose.Schema({
   images: [],
   name: String,
   description: String,
+  genres: [],
   reviews: [{ type: SchemaTypes.ObjectId, ref: 'Reviews' }],
   publisher: String,
 });
