@@ -11,6 +11,16 @@ module.exports.gamesController = {
       res.json({error: error.message})
     }
   },
+  addGenreForGame: async (req, res) => {
+    try {
+      const genres = await Games.findByIdAndUpdate(req.params.id, {
+        genres: req.body.genre
+      })
+      res.json(genres)
+    } catch (error) {
+      res.json({error: error.message})
+    }
+  },
   addGame: async (req, res) => {
     try {
       const { images, name, description, publisher} = req.body
