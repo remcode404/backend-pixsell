@@ -49,7 +49,8 @@ module.exports.gamesController = {
   },
   getGames: async (req, res) => {
     try {
-      const games = await Games.find().populate('reviews');
+      const {page = 5, limit=2} = req.query;
+      const games = await Games.find().populate('reviews').limit(limit * 1).skip((page - 1) * limit);
       res.json(games);
     } catch (error) {
       res.json({ error: error.message });
