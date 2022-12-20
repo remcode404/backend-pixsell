@@ -1,7 +1,6 @@
 const jsonwebtoken = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
-
   const { authorization } = req.headers;
 
   if (!authorization)
@@ -21,10 +20,11 @@ module.exports = async (req, res, next) => {
     );
     let hasRole = false;
     userRoles.forEach((role) => {
-      if (role.includes(role)) {
+      if (role === 'ADMIN') {
         hasRole = true;
       }
     });
+    console.log("HASROLE", hasRole)
     if (!hasRole) {
       return res.status(401).json({ error: "У вас нет доступа" });
     }
