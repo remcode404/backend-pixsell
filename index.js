@@ -5,9 +5,10 @@ const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
-app.use(express.json())
-app.use(morgan('dev'))
 app.use(cors())
+app.use(express.json())
+app.use('/images', express.static(__dirname, + '/images'))
+app.use(morgan('dev'))
 app.use(require('./routes'))
 
 const { MONGOOSE_URL, PORT } = process.env
