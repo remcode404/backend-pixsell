@@ -49,7 +49,7 @@ module.exports.gamesController = {
   },
   getGames: async (req, res) => {
     try {
-      const {page = 5, limit=2} = req.query;
+      const {page = Math.floor(games.length / 2), limit=2} = req.query; //СДЕЛАТЬ ПРОВЕРКУ НА ЧЕТНОСТЬ
       const games = await Games.find().populate('reviews').limit(limit * 1).skip((page - 1) * limit);
       res.json(games);
     } catch (error) {
