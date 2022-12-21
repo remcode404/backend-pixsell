@@ -9,7 +9,8 @@ const gamesModel = mongoose.Schema({
   genres: [],
   reviews: [{ type: SchemaTypes.ObjectId, ref: 'Reviews' }],
   publisher: String,
-  platform: []
+  platform: [],
+  price: Number
 });
 
 const Games = mongoose.model('Games', gamesModel);
