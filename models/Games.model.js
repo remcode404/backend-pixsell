@@ -10,7 +10,8 @@ const gamesModel = mongoose.Schema({
   reviews: [{ type: SchemaTypes.ObjectId, ref: 'Reviews' }],
   publisher: String,
   platform: [],
-  price: Number
+  price: Number,
+  discount: Number
 });
 
 const Games = mongoose.model('Games', gamesModel);
