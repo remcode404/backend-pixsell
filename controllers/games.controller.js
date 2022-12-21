@@ -24,8 +24,8 @@ module.exports.gamesController = {
   },
   addGame: async (req, res) => {
     try {
-      const { images, name, description, publisher } = req.body;
-      const games = await Games.create({ images, name, description, publisher });
+      const { images, name, description, date, genres, publisher, platform } = req.body;
+      const games = await Games.create({ images, name, description, date, genres, publisher, platform });
       res.json(games);
     } catch (error) {
       res.json({ error: error.message });
