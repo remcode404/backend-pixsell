@@ -1,17 +1,19 @@
-const mongoose = require('mongoose');
-const { SchemaTypes } = require('mongoose');
+const mongoose = require("mongoose");
+const { SchemaTypes } = require("mongoose");
 
 const gamesModel = mongoose.Schema({
-  images: [], 
+  images: [],
   name: String,
   description: String,
   date: String,
   genres: [],
-  reviews: [{ type: SchemaTypes.ObjectId, ref: 'Reviews' }],
+  reviews: [{ type: SchemaTypes.ObjectId, ref: "Reviews" }],
   publisher: String,
-  platform: []
+  platform: [],
+  price: Number,
+  
 });
 
-const Games = mongoose.model('Games', gamesModel);
+const Games = mongoose.model("Games", gamesModel);
 
 module.exports = Games;

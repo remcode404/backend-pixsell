@@ -4,9 +4,7 @@ module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization)
-    return res
-      .status(401)
-      .json({ error: "Вы не авторизованы" });
+    return res.status(401).json({ error: "Вы не авторизованы" });
 
   const [type, token] = authorization.split(" ");
 
@@ -20,11 +18,11 @@ module.exports = async (req, res, next) => {
     );
     let hasRole = false;
     userRoles.forEach((role) => {
-      if (role === 'ADMIN') {
+      if (role === "ADMIN") {
         hasRole = true;
       }
     });
-    console.log("HASROLE", hasRole)
+    console.log("HASROLE", hasRole);
     if (!hasRole) {
       return res.status(401).json({ error: "У вас нет доступа" });
     }

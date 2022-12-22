@@ -40,21 +40,14 @@ module.exports.userController = {
       if (!errors.isEmpty()) {
         return res.status(401).json({ error: "Ошибка при регистрации" });
       }
-      const {
-        usersName,
-        email,
-        nickName,
-        password,
-      } = req.body;
+      const { usersName, email, nickName, password } = req.body;
 
       const candidate = await User.findOne({ email });
 
       if (candidate) {
-        return res
-          .status(401)
-          .json({
-            error: `Этот адрес электронной почты ${email} уже существует`,
-          });
+        return res.status(401).json({
+          error: `Этот адрес электронной почты ${email} уже существует`,
+        });
       }
 
       const hash = await bcrypt.hash(
@@ -82,11 +75,9 @@ module.exports.userController = {
       const { nickName, email, password } = req.body;
 
       if ((!!email && !!nickName) || (!email && !nickName)) {
-        return res
-          .status(401)
-          .json({
-            error: "Следует указать адрес электронной почты, либо логин.",
-          });
+        return res.status(401).json({
+          error: "Следует указать адрес электронной почты, либо логин.",
+        });
       }
       const candidate = await User.findOne(email ? { email } : { nickName });
 
