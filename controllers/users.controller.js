@@ -2,6 +2,8 @@ const User = require("../models/Users.model");
 const Role = require("../models/Roles.model");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
+const Basket = require('../models/Basket.model');
+const { validationResult } = require("express-validator");
 
 module.exports.userController = {
   getAllUsers: async (req, res) => {
@@ -64,7 +66,7 @@ module.exports.userController = {
       res.json({ error: "Пользователь успешно зарегистрирован" });
     } catch (error) {
       console.log(error);
-      res.status(401).json({ error: "Ошибка регистрации" });
+      res.status(401).json(error.message);
     }
   },
 
@@ -90,18 +92,18 @@ module.exports.userController = {
         return res.status(401).json({ error: "Неверный пароль" });
       }
 
-      //   const basket = await Basket.findOne({ userId: candidate._id });
-      //   if (basket === null) {
-      //     await Basket.create({ userId: candidate._id });
-      //   }
-      //   console.log("basket", basket);
+      const basket = await Basket.findOne({ userId: candidate._id });
+      if (basket === null) {
+        await Basket.create({ userId: candidate._id });
+      }
+      console.log("basket", basket);
 
       const payload = {
         id: candidate._id,
         nickName: candidate.nickName,
         email: candidate.email,
         roles: candidate.roles,
-        // basket: basket._id,
+        basket: basket._id,
       };
       const token = await jsonwebtoken.sign(
         payload,
