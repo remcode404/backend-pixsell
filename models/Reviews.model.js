@@ -1,15 +1,15 @@
-const mongoose = require('mongoose')
-const { SchemaTypes } = require('mongoose')
+const mongoose = require("mongoose");
+const { SchemaTypes } = require("mongoose");
 
 const reviewsModel = mongoose.Schema({
   userId: {
     type: SchemaTypes.ObjectId,
-    ref: 'User'
+    ref: "User",
   },
   text: String,
-  isPositiveGrade: Boolean
-})
+  isPositiveGrade: Boolean,
+});
 
-const Reviews = mongoose.model('Reviews', reviewsModel)
+const Reviews = mongoose.model("Reviews", reviewsModel);
 
-module.exports = Reviews
+module.exports = Reviews;
