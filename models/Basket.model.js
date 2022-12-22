@@ -4,7 +4,7 @@ const { SchemaTypes } = require("mongoose");
 const basketSchema = mongoose.Schema({
   userId: {
     type: SchemaTypes.ObjectId,
-    ref: "user",
+    ref: "User",
   },
   products: [
     {

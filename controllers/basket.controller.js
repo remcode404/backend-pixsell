@@ -13,7 +13,8 @@ module.exports.basketController = {
   // ДОБАВЛЕНИЕ ТОВАРА В КОРЗИНУ
   addProductBasket: async (req, res) => {
     try {
-      const data = await Basket.findByIdAndUpdate(req.params.id, {
+    const { product } = req.body;
+      const data = await Basket.findByIdAndUpdate(req.user.basket, {
         $addToSet: {
           products: product,
         },
